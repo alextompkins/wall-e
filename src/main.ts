@@ -1,5 +1,6 @@
 import { Client, Message } from 'discord.js';
-import { TOKEN } from './Constants';
+import { PREFIX, TOKEN } from './Constants';
+import { commands } from './commands';
 
 const client = new Client();
 
@@ -8,8 +9,20 @@ client.on('ready', () => {
 });
 
 client.on('message', async (message: Message) => {
-  if (message.content === '!ping') {
-    await message.reply('Pong!');
+  // Stop processing if not our command or if message comes from another bot
+  if (!message.content.startsWith(PREFIX) || message.author.bot) return;
+
+  const args = message.content.slice(PREFIX.length).trim().split(/ +/);
+  const commandName = args.shift()?.toLowerCase();
+
+  if (!(commandName && commands.has(commandName))) return;
+
+  try {
+    const command = commands.get(commandName);
+    await command?.execute(message, args);
+  } catch (error) {
+    console.error(error);
+    await message.reply('My brain just exploded.');
   }
 });
 
