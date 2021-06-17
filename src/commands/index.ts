@@ -1,4 +1,4 @@
-import { ping } from './Ping';
+import { ping } from './utility/Ping';
 import { Collection } from 'discord.js';
 import { Command } from './Command';
 

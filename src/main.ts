@@ -19,7 +19,16 @@ client.on('message', async (message: Message) => {
 
   try {
     const command = commands.get(commandName);
-    await command?.execute(message, args);
+    if (!command) return;
+    if (command.guildOnly && message.channel.type === 'dm') {
+      return message.reply('I don\'t like you talking to me alone.');
+    }
+
+    if (command.args && !args.length) {
+      return `Talk to me nicely, like this: ${PREFIX}${command.name} ${command.usage}`;
+    }
+
+    return command.execute(message, args);
   } catch (error) {
     console.error(error);
     await message.reply('My brain just exploded.');

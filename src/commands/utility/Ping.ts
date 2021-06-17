@@ -1,10 +1,10 @@
-import { Command } from './Command';
+import { Command } from '../Command';
 import { Message } from 'discord.js';
 
 export class Ping implements Command {
   name = 'ping';
   description = 'Check the bot\'s pulse';
-  usage = 'ping';
+  usage = '';
   args = false;
   guildOnly = false;
 
