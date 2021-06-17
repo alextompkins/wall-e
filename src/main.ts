@@ -1,4 +1,5 @@
 import { Client } from 'discord.js';
+import { TOKEN } from './Constants';
 
 const client = new Client();
 
@@ -13,6 +14,6 @@ client.on('interaction', async interaction => {
   }
 });
 
-client.login('token')
+client.login(TOKEN)
   .then(() => console.log('My brain is loaded'))
   .catch((err: Error) => console.error(err));
