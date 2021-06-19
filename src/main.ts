@@ -28,7 +28,7 @@ client.on('message', async (message: Message) => {
       return `Talk to me nicely, like this: ${PREFIX}${command.name} ${command.usage}`;
     }
 
-    return command.execute(message, args);
+    await command.execute(message, args);
   } catch (error) {
     console.error(error);
     await message.reply('My brain just exploded.');
