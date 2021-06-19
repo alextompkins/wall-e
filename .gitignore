@@ -30,8 +30,8 @@ node_modules
 .DS_Store
 Thumbs.db
 
-# Ignore built ts files
-dist/**/*
-
 # ignore yarn.lock
 yarn.lock
+
+# Google API keys
+wall-e-discord-bot-*.json
